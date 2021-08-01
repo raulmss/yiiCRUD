@@ -15,8 +15,6 @@ class m210801_132100_create_users extends Migration
     {
         $this->createTable('cadastro',[
             'id'=> Schema::TYPE_PK.' NOT NULL AUTO_INCREMENT',
-            'usuario'=>$this->string()->notNull(),
-            'senha'=>$this->string()->notNull(),
             'nome'=>$this->string(60)->notNull(),
             'cpf'=>$this->string()->notNull(),
             'email'=>$this->string()->notNull(),

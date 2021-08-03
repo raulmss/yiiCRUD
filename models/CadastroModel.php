@@ -2,30 +2,73 @@
 
 namespace app\models;
 
-use yii\base\Model;
+use Yii;
 
-class CadastroModel extends Model
+/**
+ * This is the model class for table "cadastro".
+ *
+ * @property int $id
+ * @property string $nome
+ * @property string $usuario
+ * @property string $senha
+ * @property string $cpf
+ * @property string $email
+ * @property string $telefone
+ * @property string $datanasc
+ * @property int $ativo
+ * @property string $cep
+ * @property string $logradouro
+ * @property string $bairro
+ * @property string|null $complemento
+ * @property string $cidade
+ * @property string $estado
+ */
+class CadastroModel extends \yii\db\ActiveRecord
 {
-    public $nome;
-    public $email;
-    public $idade;
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'cadastro';
+    }
 
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
-          [['nome', 'email', 'idade'], 'required'],
-          ['email', 'email'],
-          ['idade', 'number', 'integerOnly'=>true]
-            ];
-    }
-
-    public function attributeLabels()
-    {
-        return [
-            'nome' => 'Nome Completo',
-            'email' => 'E-mail',
-            'idade' => 'Idade'
+            [['nome', 'usuario', 'senha', 'cpf', 'email', 'telefone', 'datanasc', 'cep', 'logradouro', 'bairro', 'cidade', 'estado'], 'required'],
+            [['datanasc'], 'safe'],
+            [['ativo'], 'integer'],
+            [['nome'], 'string', 'max' => 60],
+            [['usuario', 'senha', 'cpf', 'email', 'telefone', 'logradouro', 'bairro', 'complemento', 'cidade', 'estado'], 'string', 'max' => 255],
+            [['cep'], 'string', 'max' => 8],
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'nome' => 'Nome',
+            'usuario' => 'Usuario',
+            'senha' => 'Senha',
+            'cpf' => 'Cpf',
+            'email' => 'Email',
+            'telefone' => 'Telefone',
+            'datanasc' => 'Data de Nascimento',
+            'ativo' => 'Ativo',
+            'cep' => 'Cep',
+            'logradouro' => 'Logradouro',
+            'bairro' => 'Bairro',
+            'complemento' => 'Complemento',
+            'cidade' => 'Cidade',
+            'estado' => 'Estado',
+        ];
+    }
 }

@@ -27,6 +27,17 @@ class m210801_132100_create_users extends Migration
 
         ]);
 
+        $this->insert('cadastro',[
+            'nome'=>'admin',
+            'usuario'=>'admin',
+            'senha'=>sha1('admin'),
+            'cpf'=>'00000000000',
+            'email'=>'admin@admin.com',
+            'telefone'=>'999999999',
+            'datanasc'=>date('Y-m-d H:i:s'),
+            'ativo'=>1,
+            'cep'=>'59060370'
+        ]);
 
     }
 

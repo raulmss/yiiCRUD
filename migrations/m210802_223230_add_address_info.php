@@ -17,6 +17,8 @@ class m210802_223230_add_address_info extends Migration
         $this->addColumn('cadastro','complemento',$this->string());
         $this->addColumn('cadastro','cidade',$this->string()->notNull());
         $this->addColumn('cadastro','estado',$this->string()->notNull());
+        $this->addColumn('cadastro','pathFoto',$this->string());
+
     }
 
     /**
@@ -29,6 +31,7 @@ class m210802_223230_add_address_info extends Migration
         $this->dropColumn('cadastro','complemento');
         $this->dropColumn('cadastro','cidade');
         $this->dropColumn('cadastro','estado');
+        $this->dropColumn('cadastro','pathFoto');
 
     }
 

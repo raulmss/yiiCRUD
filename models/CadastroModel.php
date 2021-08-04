@@ -22,9 +22,13 @@ use Yii;
  * @property string|null $complemento
  * @property string $cidade
  * @property string $estado
+ * @property string $pathFoto
  */
+
 class CadastroModel extends \yii\db\ActiveRecord
 {
+    public $imageFile; //utilizado para carregar a imagem do formulário.
+
     /**
      * {@inheritdoc}
      */
@@ -45,6 +49,7 @@ class CadastroModel extends \yii\db\ActiveRecord
             [['nome'], 'string', 'max' => 60],
             [['usuario', 'senha', 'cpf', 'email', 'telefone', 'logradouro', 'bairro', 'complemento', 'cidade', 'estado'], 'string', 'max' => 255],
             [['cep'], 'string', 'max' => 8],
+
         ];
     }
 
@@ -69,6 +74,7 @@ class CadastroModel extends \yii\db\ActiveRecord
             'complemento' => 'Complemento',
             'cidade' => 'Cidade',
             'estado' => 'Estado',
+            'pathFoto' => 'Foto'
         ];
     }
 }

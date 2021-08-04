@@ -8,6 +8,7 @@ use app\models\CadastroSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * CadastroController implements the CRUD actions for CadastroModel model.
@@ -66,8 +67,9 @@ class CadastroController extends Controller
     {
         $model = new CadastroModel();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
             $model->ativo = 1; //Toda a conta é criada para ficar ativa.
+            $model->senha = sha1($model->senha);
             $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -88,7 +90,10 @@ class CadastroController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+            $model->senha = sha1($model->senha);
+            $this->modelUpload($model);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

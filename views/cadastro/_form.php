@@ -27,6 +27,8 @@ use kartik\datecontrol\DateControl;
 
     <?= $form->field($model, 'datanasc')->input('date') ?>
 
+    <?= $form->field($model, 'pathFoto')->fileInput() ?>
+
     <?= $form->field($model, 'cep')->textInput(['maxlength' => true, 'placeholder'=>"Números somente", 'onchange'=>'buscaCep()'])?>
     <script>
         
